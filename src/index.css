@@ -1,0 +1,27 @@
+:root {
+  font-family: 'Space Grotesk';
+  font-size: 22px;
+  line-height: 1.5;
+
+  color-scheme: light dark;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: white;
+}
+
+body {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+input::placeholder {
+  color: white;
+  opacity: 0.5;
+}
