@@ -15,7 +15,8 @@ const teamMembers = [
     role: 'Étudiant 5a Info Alt', 
     email: 'tomm.hzgz@univ-lemans.fr', 
     status: 'DEV WEB', 
-    statusColor: colors.devWebColor 
+    statusColor: colors.devWebColor,
+    image: 'https://i.pravatar.cc/150?img=1',
   },
   { 
     id: 2, 
@@ -23,7 +24,8 @@ const teamMembers = [
     role: 'Étudiant 5a Info Alt', 
     email: 'tomm.hzgz@univ-lemans.fr', 
     status: 'ENCADRANT', 
-    statusColor: colors.encadrantColor 
+    statusColor: colors.encadrantColor,
+    image: 'https://i.pravatar.cc/150?img=2',
   },
   { 
     id: 3, 
@@ -31,7 +33,8 @@ const teamMembers = [
     role: 'Étudiant 5a Info Alt', 
     email: 'tomm.hzgz@univ-lemans.fr', 
     status: 'CHEF DE PROJET', 
-    statusColor: colors.chefProjetColor 
+    statusColor: colors.chefProjetColor,
+    image: 'https://i.pravatar.cc/150?img=3', 
   },
   { 
     id: 4, 
@@ -39,7 +42,8 @@ const teamMembers = [
     role: 'Étudiant 5a Info Alt', 
     email: 'tomm.hzgz@univ-lemans.fr', 
     status: 'DATA', 
-    statusColor: colors.dataColor 
+    statusColor: colors.dataColor,
+    image: 'https://i.pravatar.cc/150?img=3', 
   },
   { 
     id: 5, 
@@ -47,7 +51,8 @@ const teamMembers = [
     role: 'Étudiant 5a Info Alt', 
     email: 'tomm.hzgz@univ-lemans.fr', 
     status: 'DEV WEB', 
-    statusColor: colors.devWebColor 
+    statusColor: colors.devWebColor,
+    image: 'https://i.pravatar.cc/150?img=4', 
   },
   { 
     id: 6, 
@@ -55,7 +60,8 @@ const teamMembers = [
     role: 'Étudiant 5a Info Alt', 
     email: 'tomm.hzgz@univ-lemans.fr', 
     status: 'SCRUM MASTER', 
-    statusColor: colors.scMasterColor 
+    statusColor: colors.scMasterColor,
+    image: 'https://i.pravatar.cc/150?img=5', 
   },
   { 
     id: 7, 
@@ -63,7 +69,8 @@ const teamMembers = [
     role: 'Étudiant 5a Info Alt', 
     email: 'tomm.hzgz@univ-lemans.fr', 
     status: '3D', 
-    statusColor: colors.tdColor 
+    statusColor: colors.tdColor,
+    image: 'https://i.pravatar.cc/150?img=6', 
   },
   { 
     id: 8, 
@@ -71,7 +78,8 @@ const teamMembers = [
     role: 'Étudiant 5a Info Alt', 
     email: 'tomm.hzgz@univ-lemans.fr', 
     status: 'DEV WEB', 
-    statusColor: colors.devWebColor 
+    statusColor: colors.devWebColor,
+    image: 'https://i.pravatar.cc/150?img=7', 
   },
   { 
     id: 9, 
@@ -79,7 +87,8 @@ const teamMembers = [
     role: 'Étudiant 5a Info Alt', 
     email: 'tomm.hzgz@univ-lemans.fr', 
     status: 'DEV WEB', 
-    statusColor: colors.devWebColor 
+    statusColor: colors.devWebColor,
+    image: 'https://i.pravatar.cc/150?img=8', 
   },
   { 
     id: 10, 
@@ -87,7 +96,8 @@ const teamMembers = [
     role: 'Étudiant 5a Info Alt', 
     email: 'tomm.hzgz@univ-lemans.fr', 
     status: 'DESIGN', 
-    statusColor: colors.designColor 
+    statusColor: colors.designColor,
+    image: 'https://i.pravatar.cc/150?img=9', 
   },
   { 
     id: 11, 
@@ -95,7 +105,8 @@ const teamMembers = [
     role: 'Étudiant 5a Info Alt', 
     email: 'tomm.hzgz@univ-lemans.fr', 
     status: 'DATA', 
-    statusColor: colors.dataColor 
+    statusColor: colors.dataColor,
+    image: 'https://i.pravatar.cc/150?img=10', 
   },
   { 
     id: 12, 
@@ -103,7 +114,8 @@ const teamMembers = [
     role: 'Étudiant 5a Info Alt', 
     email: 'tomm.hzgz@univ-lemans.fr', 
     status: 'DEV WEB', 
-    statusColor: colors.devWebColor 
+    statusColor: colors.devWebColor,
+    image: 'https://i.pravatar.cc/150?img=11', 
   },
   { 
     id: 13, 
@@ -111,7 +123,8 @@ const teamMembers = [
     role: 'Étudiant 5a Info Alt', 
     email: 'tomm.hzgz@univ-lemans.fr', 
     status: 'ENCADRANT', 
-    statusColor: colors.encadrantColor 
+    statusColor: colors.encadrantColor,
+    image: 'https://i.pravatar.cc/150?img=12', 
   }
 ];
 
@@ -426,7 +439,7 @@ function Homepage() {
   const TeamMemberCard = ({ member }: { member: typeof teamMembers[0] }) => (
     <div style={styles.teamMemberCard}>
       <img 
-        src={`https://i.pravatar.cc/150?img=${member.id}`} 
+        src={member.image} 
         alt={member.name} 
         style={styles.memberImage}
       />
