@@ -29,6 +29,7 @@ coverage/
 *.swo
 *.bak
 
+
 # IDE files
 .vscode/
 .idea/
@@ -45,3 +46,6 @@ coverage/
 # Miscellaneous
 .DS_Store
 Thumbs.db
+
+#package lock
+package-lock.json
