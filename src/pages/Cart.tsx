@@ -1,6 +1,5 @@
-import { CSSProperties, useState } from "react";
+import { CSSProperties, useEffect, useState } from "react";
 import Header from "../components/Header";
-import Button from "@mui/material/Button";
 
 const styles: { [key: string]: CSSProperties } = {
   headerContainer: {
@@ -31,30 +30,27 @@ const styles: { [key: string]: CSSProperties } = {
     justifyContent: "center",
     marginTop: "1rem",
   },
+  emptyCart: {
+    textAlign: "center",
+    fontSize: "18px",
+    fontWeight: "bold",
+    color: "gray",
+    margin: "20px 0",
+  },
 };
 
 type Product = {
   id: number;
   name: string;
   price: number;
+  oldPrice: number;
   color: string;
   image: string;
   quantity: number;
 };
 
-const initialCart: Product[] = [
-  {
-    id: 1,
-    name: "La Bowl Bleue",
-    price: 200,
-    color: "Bleue",
-    image: "https://via.placeholder.com/50x30/87CEFA/000000?text=+", // Placeholder
-    quantity: 1,
-  },
-];
-
 function Cart() {
-  const [cart, setCart] = useState<Product[]>(initialCart);
+  const [cart, setCart] = useState<Product[]>([]);
   const [giftWrap, setGiftWrap] = useState<boolean>(false);
 
   const updateQuantity = (id: number, delta: number) => {
@@ -75,6 +71,14 @@ function Cart() {
     cart.reduce((sum, product) => sum + product.price * product.quantity, 0) +
     (giftWrap ? 10 : 0);
 
+  useEffect(() => {
+    // get the cart from local storage
+    const cart = localStorage.getItem("cart");
+    if (cart) {
+      setCart(JSON.parse(cart));
+    }
+  }, [total]);
+
   return (
     <div>
       <div style={styles.headerContainer}>
@@ -82,82 +86,91 @@ function Cart() {
         <h1 style={styles.productName}>Votre panier</h1>
       </div>
       <div className="cart-container">
-        <table className="cart-table">
-          <thead>
-            <tr>
-              <th>Produit</th>
-              <th>Prix</th>
-              <th>Quantité</th>
-              <th>Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            {cart.map((product) => (
-              <tr key={product.id}>
-                <td className="product-info">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="product-image"
-                  />
-                  <div>
-                    <span className="product-name">{product.name}</span>
-                    <div className="product-color">Color : {product.color}</div>
-                    <button
-                      className="remove-button"
-                      onClick={() => removeItem(product.id)}
-                    >
-                      Supprimer
-                    </button>
-                  </div>
-                </td>
-                <td>${product.price}</td>
-                <td>
-                  <div className="quantity-control">
-                    <button onClick={() => updateQuantity(product.id, -1)}>
-                      -
-                    </button>
-                    <span>{product.quantity}</span>
-                    <button onClick={() => updateQuantity(product.id, 1)}>
-                      +
-                    </button>
-                  </div>
-                </td>
-                <td>${(product.price * product.quantity).toFixed(2)}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        {cart.length === 0 ? (
+          <p className="empty-cart">Votre panier est vide</p>
+        ) : (
+          <>
+            <table className="cart-table">
+              <thead>
+                <tr>
+                  <th>Produit</th>
+                  <th>Prix</th>
+                  <th>Quantité</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                {cart.map((product) => (
+                  <tr key={product.id}>
+                    <td className="product-info">
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="product-image"
+                      />
+                      <div>
+                        <span className="product-name">{product.name}</span>
+                        <div className="product-color">
+                          Color : {product.color}
+                        </div>
+                        <button
+                          className="remove-button"
+                          onClick={() => removeItem(product.id)}
+                        >
+                          Supprimer
+                        </button>
+                      </div>
+                    </td>
+                    <td>
+                      {product.oldPrice && (
+                        <span className="old-price">
+                          ${product.oldPrice.toFixed(2)}
+                        </span>
+                      )}
+                      <span className="current-price">
+                        ${product.price.toFixed(2)}
+                      </span>
+                    </td>
+                    <td>
+                      <div className="quantity-control">
+                        <button onClick={() => updateQuantity(product.id, -1)}>
+                          -
+                        </button>
+                        <span>{product.quantity}</span>
+                        <button onClick={() => updateQuantity(product.id, 1)}>
+                          +
+                        </button>
+                      </div>
+                    </td>
+                    <td>${(product.price * product.quantity).toFixed(2)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
 
-        <div className="gift-wrap">
-          <label>
-            <input
-              type="checkbox"
-              checked={giftWrap}
-              onChange={() => setGiftWrap(!giftWrap)}
-            />
-            $10.00 De Plus Pour Emballer
-          </label>
-        </div>
+            <div className="gift-wrap">
+              <label>
+                <input
+                  type="checkbox"
+                  checked={giftWrap}
+                  onChange={() => setGiftWrap(!giftWrap)}
+                />
+                $10.00 De Plus Pour Emballer
+              </label>
+            </div>
 
-        <div className="total-section">
-          <span>Total</span>
-          <span>${total.toFixed(2)}</span>
-        </div>
+            <div className="total-section">
+              <span>Total</span>
+              <span>${total.toFixed(2)}</span>
+            </div>
 
-        <div style={styles.buttonContainer}>
-          <Button
-            className="panier-button"
-            variant="contained"
-            sx={styles.cartButton}
-          >
-            Paiement
-          </Button>
-        </div>
+            <button className="payment-button">Paiement</button>
+          </>
+        )}
 
         <style>{`
         .cart-container {
-          max-width: 80vw;
+          max-width: 800px;
           margin: auto;
           padding: 20px;
         }
@@ -194,6 +207,15 @@ function Cart() {
           cursor: pointer;
           font-size: 14px;
         }
+        .old-price {
+          text-decoration: line-through;
+          color: gray;
+          margin-right: 8px;
+        }
+        .current-price {
+          font-weight: bold;
+          color: red;
+        }
         .quantity-control {
           display: flex;
           align-items: center;
@@ -221,6 +243,23 @@ function Cart() {
           justify-content: space-between;
           font-size: 18px;
           font-weight: bold;
+          margin: 20px 0;
+        }
+        .payment-button {
+          width: 100%;
+          padding: 15px;
+          background: black;
+          color: white;
+          border: none;
+          font-size: 18px;
+          cursor: pointer;
+          border-radius: 5px;
+        }
+        .empty-cart {
+          text-align: center;
+          font-size: 18px;
+          font-weight: bold;
+          color: gray;
           margin: 20px 0;
         }
       `}</style>
