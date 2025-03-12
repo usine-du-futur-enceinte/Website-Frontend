@@ -196,6 +196,16 @@ const styles: { [key: string]: CSSProperties } = {
     width: "70%",
     border: `2px solid ${colors.black}`,
   },
+  mainImage: {
+    flexGrow: 1,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.lightGray,
+    height: '90%',
+    width: '70%',
+    border: `2px solid ${colors.black}`,
+  },
   leftSection: {
     width: "40%",
   },
