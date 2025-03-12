@@ -1,10 +1,12 @@
 // Header.tsx
-import React, { useState } from "react";
-import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
-import MenuIcon from "@mui/icons-material/Menu";
-import IconButton from "@mui/material/IconButton";
-import { colors } from "../assets/colors";
+import { useState, useEffect } from 'react';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import MenuIcon from '@mui/icons-material/Menu';
+import IconButton from '@mui/material/IconButton';
+import Badge from '@mui/material/Badge';
+import {colors} from '../assets/colors';
+import { Link } from 'react-router-dom';
 
 // Définition des styles
 const styles = {
@@ -69,16 +71,22 @@ const styles = {
 
   button: {
     color: colors.realDark,
-    fontWeight: "semibold",
-    "&:hover": {
-      backgroundColor: colors.lightBlue,
-      transform: "scale(1.02)",
+    fontWeight: 'semibold',
+    '&:hover': {
+      backgroundColor: colors.lighttBlue,
+      transform: 'scale(1.1)',
     },
     textTransform: "none" as const,
   },
+  badge: {
+    '&:hover': {
+      transform: 'scale(1.02)',
+    },
+  }
+  
+
 };
 
-// Style CSS à ajouter dans un fichier séparé
 const cssStyles = `
   @media (max-width: 768px) {
 
@@ -130,6 +138,34 @@ const cssStyles = `
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
+  
+  useEffect(() => {
+    const savedCart = localStorage.getItem('cart');
+    if (savedCart) {
+      const cart = JSON.parse(savedCart);
+      const count = cart.reduce((acc: number, item: { quantity: number }) => acc + item.quantity, 0);
+      setCartCount(count);
+    }
+  }, []);
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      // Get the element's position relative to the top of the page
+      const elementPosition = element.getBoundingClientRect().top;
+      // Get the current scroll position
+      const offsetPosition = elementPosition + window.pageYOffset;
+      // Subtract 20vh from the scroll target position
+      const offset = window.innerHeight * -0.1; // 20vh
+      
+      // Scroll to the adjusted position
+      window.scrollTo({
+        top: offsetPosition - offset,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -158,20 +194,25 @@ function Header() {
               alignItems="center"
               sx={styles.buttonGroup}
             >
-              <Button style={styles.button}>Accueil</Button>
-              <Button style={styles.button}>Documentation</Button>
-              <Button style={styles.button}>Contact</Button>
-              <Button sx={styles.button}>Connexion</Button>
+              <Button style={styles.button} >Accueil</Button>
+              <Button style={styles.button} onClick={() => scrollToSection('documentation')}>Documentation</Button>
+              <Button style={styles.button} onClick={() => scrollToSection('contact')}>Contact</Button>
+              <Button style={styles.button} onClick={() => scrollToSection('customisation')}>Customisation</Button>
+              <Button sx ={styles.button} component={Link} to="/auth">Connexion</Button>
             </Stack>
           </div>
 
-          <Button
-            className="panier-button"
+          <Badge badgeContent={cartCount > 0 ? cartCount : null} color="error" sx={styles.badge}>
+          <Button 
+            className='panier-button'
             variant="contained"
             sx={styles.cartButton}
+            component={Link}
+            to="/cart"
           >
             Panier
           </Button>
+          </Badge>
         </div>
       </div>
     </>
