@@ -196,7 +196,7 @@ function Header() {
               alignItems="center"
               sx={styles.buttonGroup}
             >
-              <Button style={styles.button} >Accueil</Button>
+              <Button style={styles.button} component={Link} to="/" >Accueil</Button>
               <Button style={styles.button} onClick={() => scrollToSection('documentation')}>Documentation</Button>
               <Button style={styles.button} onClick={() => scrollToSection('contact')}>Contact</Button>
               <Button style={styles.button} onClick={() => scrollToSection('customisation')}>Customisation</Button>
