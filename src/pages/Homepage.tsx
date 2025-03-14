@@ -256,11 +256,6 @@ const styles: { [key: string]: CSSProperties } = {
     backgroundColor: colors.black,
     fontWeight: 'bold',
     color: colors.white,
-    '&:hover': {
-      backgroundColor: colors.white,
-      color: colors.black,
-      transform: 'scale(1.1)',
-    },
     textTransform: 'none' as const,
   },
   savButton: {
@@ -820,7 +815,7 @@ function Homepage() {
         </DialogActions>
       </Dialog>
     </div>
-  )
+  );
 }
 
 export default Homepage;

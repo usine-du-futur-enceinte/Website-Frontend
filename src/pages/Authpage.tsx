@@ -1,5 +1,5 @@
 import { Button, TextField } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { CSSProperties } from "react";
 import { colors } from "../assets/colors";
 import React from "react";
@@ -96,13 +96,19 @@ function Authpage() {
       });
   };
 
+  function goBackAccueil() {
+    navigate("/");
+  }
+
   return (
     <div style={style.container}>
       <div style={style.header}>
-        <Button variant="contained" style={style.button}>
-          <Link to="/" style={{ color: "white" }}>
-            Accueil
-          </Link>
+        <Button
+          onClick={goBackAccueil}
+          variant="contained"
+          style={style.button}
+        >
+          Accueil
         </Button>
       </div>
       <div style={style.contentContainer}>
