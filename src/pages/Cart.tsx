@@ -1,5 +1,6 @@
 import { CSSProperties, useEffect, useState } from "react";
 import Header from "../components/Header";
+import jsPDF from "jspdf";
 
 const styles: { [key: string]: CSSProperties } = {
   headerContainer: {
@@ -89,9 +90,51 @@ function Cart() {
   }, [total]);
 
   function startPaiement() {
-    const user = localStorage.getItem("user");
+    const user = localStorage.getItem("accessToken");
     if (user) {
-      alert("Paiement démarré !");
+      const doc = new jsPDF();
+
+      // Add title
+      doc.setFontSize(18);
+      doc.text("Facture - BowlBox 3000", 10, 10);
+
+      // Add subtitle
+      doc.setFontSize(14);
+      doc.text("Bonjour,", 10, 20);
+      doc.text(
+        "Merci pour votre achat ! Voici la liste de vos articles :",
+        10,
+        30
+      );
+
+      // Add product list
+      doc.setFontSize(12);
+      cart.forEach((product, index) => {
+        doc.text(
+          `- ${product.name} (Quantité: ${product.quantity}, Prix: $${(
+            product.price * product.quantity
+          ).toFixed(2)})`,
+          10,
+          40 + index * 10
+        );
+      });
+
+      // Add total
+      doc.setFontSize(14);
+      doc.text(`Total : $${total.toFixed(2)}`, 10, 50 + cart.length * 10);
+
+      // Add footer
+      doc.setFontSize(12);
+      doc.text(
+        "Venez à l'ENSIM pour régler votre facture et récupérer votre commande.",
+        10,
+        60 + cart.length * 10
+      );
+      doc.text("Cordialement,", 10, 80 + cart.length * 10);
+      doc.text("L'équipe de BowlBox 3000.", 10, 90 + cart.length * 10);
+
+      // Save the PDF
+      doc.save("BowlBox3000Facture.pdf");
     } else {
       window.location.href = "/auth";
     }
@@ -182,7 +225,9 @@ function Cart() {
               <span>${total.toFixed(2)}</span>
             </div>
 
-            <button onClick={startPaiement} className="payment-button">Paiement</button>
+            <button onClick={startPaiement} className="payment-button">
+              Télécharger la facture
+            </button>
           </>
         )}
 
