@@ -546,7 +546,7 @@ function Homepage() {
     const formJson = Object.fromEntries(formData.entries());
 
     // Construct the mailto URL
-    const mailtoUrl = `mailto:a@agmail.com?subject=${encodeURIComponent(formJson.object)}&body=${encodeURIComponent(`${formJson.message}`)}`;
+    const mailtoUrl = `mailto:errouichaqayoub@gmail.com?subject=${encodeURIComponent(formJson.object)}&body=${encodeURIComponent(`${formJson.message}`)}`;
 
     // Open the mail client
     window.location.href = mailtoUrl;
