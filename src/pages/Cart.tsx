@@ -74,7 +74,11 @@ function Cart() {
   };
 
   const removeItem = (id: number) => {
-    setCart((prevCart) => prevCart.filter((product) => product.id !== id));
+    setCart((prevCart) => {
+      const updatedCart = prevCart.filter((product) => product.id !== id);
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+      return updatedCart;
+    });
   };
 
   const total =
