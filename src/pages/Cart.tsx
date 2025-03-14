@@ -50,17 +50,26 @@ type Product = {
 };
 
 function Cart() {
-  const [cart, setCart] = useState<Product[]>([]);
+  const [cart, setCart] = useState<Product[]>(() => {
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+      return JSON.parse(savedCart);
+    } else {
+      return [];
+    }
+  });
   const [giftWrap, setGiftWrap] = useState<boolean>(false);
 
   const updateQuantity = (id: number, delta: number) => {
-    setCart((prevCart) =>
-      prevCart.map((product) =>
+    setCart((prevCart) => {
+      const updatedCart = prevCart.map((product) =>
         product.id === id
           ? { ...product, quantity: Math.max(1, product.quantity + delta) }
           : product
-      )
-    );
+      );
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+      return updatedCart;
+    });
   };
 
   const removeItem = (id: number) => {
