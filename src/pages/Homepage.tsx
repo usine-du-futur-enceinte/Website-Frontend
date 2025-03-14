@@ -596,7 +596,7 @@ function Homepage() {
         </div>
       </section>
     </div>
-  )
+  );
 }
 
-export default Homepage
+export default Homepage;
