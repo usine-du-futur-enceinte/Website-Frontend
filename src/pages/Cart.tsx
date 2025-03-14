@@ -88,6 +88,15 @@ function Cart() {
     }
   }, [total]);
 
+  function startPaiement() {
+    const user = localStorage.getItem("user");
+    if (user) {
+      alert("Paiement démarré !");
+    } else {
+      window.location.href = "/auth";
+    }
+  }
+
   return (
     <div>
       <div style={styles.headerContainer}>
@@ -173,7 +182,7 @@ function Cart() {
               <span>${total.toFixed(2)}</span>
             </div>
 
-            <button className="payment-button">Paiement</button>
+            <button onClick={startPaiement} className="payment-button">Paiement</button>
           </>
         )}
 

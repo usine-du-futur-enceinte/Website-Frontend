@@ -1,4 +1,4 @@
-const baseUrl = "http://172.20.10.2:3030";
+const baseUrl = "https://back-end-website-bowlbox3000.onrender.com";
 
 async function hashPassword(password: string): Promise<string> {
   const encoder = new TextEncoder();
