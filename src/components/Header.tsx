@@ -11,62 +11,63 @@ import { Link } from 'react-router-dom';
 // Définition des styles
 const styles = {
   navbar: {
-    position: "relative" as const,
-    width: "100%",
-    padding: "1rem 0",
-    margin: "0 auto",
+    position: 'relative' as const,
+    width: '100%',
+    padding: '1rem 0',
+    margin: '0 auto',
   },
   container: {
-    margin: "0 auto",
-    padding: "0 20px",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    maxWidth: "1300px",
-    width: "90%",
+    margin: '0 auto',
+    padding: '0 20px',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    maxWidth: '1300px',
+    width: '90%',
   },
   menuButton: {
-    display: "none",
-    "@media (max-width: 768px)": {
-      display: "block",
+    display: 'none',
+    '@media (max-width: 768px)': {
+      display: 'block',
     },
   },
   navLinks: {
-    display: "flex",
-    justifyContent: "center",
+    display: 'flex',
+    justifyContent: 'center',
     flex: 1,
-    "@media (max-width: 768px)": {
-      display: "none",
-      flexDirection: "column",
-      position: "absolute",
-      top: "100%",
+    '@media (max-width: 768px)': {
+      display: 'none',
+      flexDirection: 'column',
+      position: 'absolute',
+      top: '100%',
       left: 0,
       right: 0,
-      backgroundColor: "#ffffff",
-      padding: "1rem",
-      boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
+      backgroundColor: '#ffffff',
+      padding: '1rem',
+      boxShadow: '0 2px 5px rgba(0,0,0,0.1)',
     },
   },
   navLinksOpen: {
-    "@media (max-width: 768px)": {
-      display: "flex",
+    '@media (max-width: 768px)': {
+      display: 'flex',
     },
   },
   cartButton: {
-    backgroundColor: "#000",
-    fontWeight: "bold",
-    color: "#fff",
-    "&:hover": {
-      backgroundColor: "#fff",
-      color: "#000",
-      transform: "scale(1.1)",
+    backgroundColor: '#000',
+    fontWeight: 'bold',
+    color: '#fff',
+    '&:hover': {
+      backgroundColor: '#fff',
+      color: '#000',
+      transform: 'scale(1.1)',
     },
-    textTransform: "none" as const,
+    textTransform: 'none' as const,
+    
   },
 
   buttonGroup: {
-    maxWidth: "600px", // Limite la largeur du groupe de boutons
-    margin: "0 auto",
+    maxWidth: '600px', // Limite la largeur du groupe de boutons
+    margin: '0 auto',
   },
 
   button: {
@@ -76,7 +77,8 @@ const styles = {
       backgroundColor: colors.lighttBlue,
       transform: 'scale(1.1)',
     },
-    textTransform: "none" as const,
+    textTransform: 'none' as const,
+
   },
   badge: {
     '&:hover': {
@@ -187,10 +189,10 @@ function Header() {
             <MenuIcon />
           </IconButton>
 
-          <div className={`nav-links ${isMenuOpen ? "open" : ""}`}>
+          <div className={`nav-links ${isMenuOpen ? 'open' : ''}`}>
             <Stack
               spacing={10}
-              direction={{ xs: "column", sm: "row" }}
+              direction={{ xs: 'column', sm: 'row' }}
               alignItems="center"
               sx={styles.buttonGroup}
             >
