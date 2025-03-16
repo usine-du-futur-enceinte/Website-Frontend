@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, FormEvent } from 'react';
 import Header from "../components/Header";
-import { CSSProperties } from 'react';
 import { Button } from "@mui/material";
 import { colors } from '../assets/colors';
 import Add from '@mui/icons-material/Add';
@@ -41,8 +40,6 @@ import BowlJaune from '../assets/Images/Enceinte/bowlJaune.png';
 import userNotice from '../assets/Documents/NoticeUtilisateur.pdf';
 import ficheTechnique from '../assets/Documents/FicheTechnique.pdf';
 import noticeSAV from '../assets/Documents/NoticeSAV.pdf';
-
-
 
 // Team members data
 const teamMembers = [
@@ -219,7 +216,7 @@ const products = [
   { id: 4, name: "La Bowl Jaune", color: colors.yellow, price: 230, oldPrice: 950, image: BowlJaune},
 ];
 
-const styles: { [key: string]: CSSProperties } = {
+const styles: Record<string, any> = {
   container: {
     padding: '1rem',
     display: 'flex',
@@ -540,13 +537,13 @@ function Homepage() {
     }, 3000);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const formJson = Object.fromEntries(formData.entries());
 
     // Construct the mailto URL
-    const mailtoUrl = `mailto:errouichaqayoub@gmail.com?subject=${encodeURIComponent(formJson.object)}&body=${encodeURIComponent(`${formJson.message}`)}`;
+    const mailtoUrl = `mailto:errouichaqayoub@gmail.com?subject=${encodeURIComponent(formJson.object as string)}&body=${encodeURIComponent(`${formJson.message as string}`)}`;
 
     // Open the mail client
     window.location.href = mailtoUrl;

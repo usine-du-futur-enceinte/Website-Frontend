@@ -210,15 +210,15 @@ function Header() {
 
           <div className={`nav-links ${isMenuOpen ? 'open' : ''}`}>
             <Stack
-              spacing={10}
+              spacing={12}
               direction={{ xs: 'column', sm: 'row' }}
               alignItems="center"
               sx={styles.buttonGroup}
             >
               <Button style={styles.button} component={Link} to="/">Accueil</Button>
               <Button style={styles.button} onClick={() => scrollToSection('documentation')}>Documentation</Button>
+              <Button style={styles.button} onClick={() => scrollToSection('customisation')}>Custom</Button>
               <Button style={styles.button} onClick={() => scrollToSection('contact')}>Contact</Button>
-              <Button style={styles.button} onClick={() => scrollToSection('customisation')}>Customisation</Button>
               <Button style={styles.button} component={Link} to="/auth">Connexion</Button>
             </Stack>
             
