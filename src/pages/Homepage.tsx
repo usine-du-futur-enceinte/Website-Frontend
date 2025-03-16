@@ -32,10 +32,10 @@ import Mathieu from '../assets/Images/photos/Mathieu.jpg';
 // Photos de l'enceinte
 import face from '../assets/Images/Enceinte/face.png';
 import Bowl3D from '../assets/Images/Enceinte/3D.png';
-import BowlBleue from '../assets/Images/Enceinte/BowlBleue.png';
-import BowlRouge from '../assets/Images/Enceinte/BowlRouge.png';
-import BowlVerte from '../assets/Images/Enceinte/BowlVerte.png';
-import BowlOrange from '../assets/Images/Enceinte/BowlOrange.png';
+import BowlBleue from '../assets/Images/Enceinte/bowlBleue.png';
+import BowlRouge from '../assets/Images/Enceinte/bowlRouge.png';
+import BowlVerte from '../assets/Images/Enceinte/bowlVerte.png';
+import BowlJaune from '../assets/Images/Enceinte/bowlJaune.png';
 
 //Documents
 import userNotice from '../assets/Documents/NoticeUtilisateur.pdf';
@@ -216,7 +216,7 @@ const products = [
   { id: 1, name: "La Bowl Bleue", color: colors.blue, price: 200, oldPrice: 1000, image: BowlBleue },
   { id: 2, name: "La Bowl Rouge", color: colors.red, price: 250, oldPrice: 1100, image: BowlRouge },
   { id: 3, name: "La Bowl Verte", color: colors.green, price: 180, oldPrice: 900, image: BowlVerte },
-  { id: 4, name: "La Bowl Orange", color: colors.orange, price: 230, oldPrice: 950, image: BowlOrange},
+  { id: 4, name: "La Bowl Jaune", color: colors.yellow, price: 230, oldPrice: 950, image: BowlJaune},
 ];
 
 const styles: { [key: string]: CSSProperties } = {
@@ -279,12 +279,12 @@ const styles: { [key: string]: CSSProperties } = {
     alignItems: 'center',
     justifyContent: 'center',
     height: '90%',
-    width: '70%',
-    marginTop: '-1rem',
+    width: '100%',
+    marginTop: '-2rem',
   },
   imageface: {
     width: '100%',
-    height: '70%',
+    height: '80%',
     objectFit: 'contain',
   },
   leftSection: {
