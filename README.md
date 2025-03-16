@@ -1,10 +1,7 @@
 # 🎵 Website Frontend - Enceinte5A
 
 ## 🔧 Technologies utilisées
-![React](https://img.shields.io/badge/React-✓-blue)  
-![TypeScript](https://img.shields.io/badge/TypeScript-✓-blue)  
-![Vite](https://img.shields.io/badge/Vite-✓-purple)  
-![CSS](https://img.shields.io/badge/CSS-✓-blue)
+![React](https://img.shields.io/badge/React-✓-blue)  ![TypeScript](https://img.shields.io/badge/TypeScript-✓-blue)  ![Vite](https://img.shields.io/badge/Vite-✓-purple)  ![CSS](https://img.shields.io/badge/CSS-✓-blue)
 
 Frontend du projet **Website-Frontend** développé avec **React**, **TypeScript** et **Vite**, stylisé avec **CSS**.
 
