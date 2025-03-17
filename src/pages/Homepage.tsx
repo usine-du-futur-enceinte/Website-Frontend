@@ -100,7 +100,7 @@ const teamMembers = [
   {
     id: 7,
     name: 'MARIE ANGE MBALA',
-    role: 'Étudiant 5a Info Alt',
+    role: 'Étudiante 5a Info Alt',
     email: 'mbalamarieange@gmail.com',
     status: 'DOCUMENTATION',
     statusColor: colors.devWebColor,
@@ -127,7 +127,7 @@ const teamMembers = [
   {
     id: 10,
     name: 'EMMA ROBERT',
-    role: 'Étudiant 5a Info Alt',
+    role: 'Étudiante 5a Info Alt',
     email: 'Emma-Robert.Etu@univ-lemans.fr',
     status: '3D',
     statusColor: colors.devWebColor,
@@ -154,7 +154,7 @@ const teamMembers = [
   {
     id: 13,
     name: 'SUZY-LOU GERVOT',
-    role: 'Étudiant 5a Info Alt',
+    role: 'Étudiante 5a Info Alt',
     email: 'suzylou.g@gmail.com',
     status: 'FABLAB',
     statusColor: colors.encadrantColor,
